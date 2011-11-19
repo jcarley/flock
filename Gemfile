@@ -4,9 +4,9 @@ gem 'rails', '3.0.10'
 gem 'sqlite3'
 gem 'devise', '~> 1.4.9'
 gem 'jquery-rails'
-gem 'mongo', '~> 1.4.0'
-  gem 'mongoid', '~> 2.2.4'
-  gem 'bson_ext', '~> 1.4.0'
+#gem 'mongo', '~> 1.4.0'
+  #gem 'mongoid', '~> 2.2.4'
+  #gem 'bson_ext', '~> 1.4.0'
 
 group :development, :test do
   #gem 'pry'
