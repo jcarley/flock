@@ -4,12 +4,14 @@ gem 'rails', '3.0.10'
 gem 'sqlite3'
 gem 'devise', '~> 1.4.9'
 gem 'jquery-rails'
+gem 'will_paginate', '~> 3.0.2'
+#gem 'week', '~> 0.0.2'
 #gem 'mongo', '~> 1.4.0'
   #gem 'mongoid', '~> 2.2.4'
   #gem 'bson_ext', '~> 1.4.0'
 
 group :development, :test do
-  #gem 'pry'
+  gem 'pry'
   #gem 'pry-doc'
   #gem 'pry-rails'
   gem 'fuubar'
@@ -24,6 +26,7 @@ group :development, :test do
     gem 'autotest-rails-pure', '4.1.2'
   gem 'webrat'
   gem 'factory_girl_rails', '1.0.1'
+  gem 'faker', '~> 1.0.1'
   gem 'ruby-debug', :platforms => [:ruby_18]
   gem 'ruby-debug19', :platforms => [:ruby_19], :require => 'ruby-debug'
 end
