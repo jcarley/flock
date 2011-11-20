@@ -1,3 +1,17 @@
+<%= content_for :head do %>
+  <%= javascript_include_tag "jquery-ui-1.8.16.custom.min" %>
+  <%= stylesheet_link_tag "flick/jquery-ui-1.8.16.custom.css" %>
+  <script type="text/javascript">
+    $(function() {
+        $("#timecard_volunteer_date").datepicker({
+            showOn: "both",
+            buttonImage: '<%= image_path "calendar.gif"  %>',
+            buttonImageOnly : true
+          });
+    });
+  </script>
+<% end %>
+
 <%= form_for(@timecard) do |f| %>
   <% if @timecard.errors.any? %>
     <div id="error_explanation">
@@ -12,12 +26,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :volunteer_date %><br />
-    <%= f.time_select :volunteer_date %>
+    <%= f.text_field :volunteer_date  %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br />
@@ -28,6 +38,7 @@
     <%= f.time_select :end_time %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn primary" %>
+    <%= link_to 'Cancel', timecards_path, :class => "btn" %>
   </div>
 <% end %>
