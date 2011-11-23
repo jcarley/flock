@@ -1,0 +1,33 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= unless resource.errors.empty? %>
+    <div class="alert-message block-message error">
+      <a class="close" href="#">×</a>
+      <p><strong>Oh snap! You got an error!</strong> Change this and that and <a href="#">try again</a>.</p>
+      <ul>
+        <li>Duis mollis est non commodo luctus</li>
+        <li>Nisi erat porttitor ligula</li>
+        <li>Eget lacinia odio sem nec elit</li>
+      </ul>
+      <div class="alert-actions">
+        <a class="btn small" href="#">Take this action</a> <a class="btn small" href="#">Or do this</a>
+      </div>
+    </div>
+  <% end %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up", :class => "btn primary" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

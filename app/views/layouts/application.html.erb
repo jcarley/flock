@@ -10,6 +10,12 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
+  <script type="text/javascript">
+    $(function() {
+        $(".alert-message").alert();
+      });
+  </script>
+
 </head>
 <body>
 
@@ -19,6 +25,7 @@
           <a class="brand" href="#">Flock</a>
           <ul class="nav">
             <li class="active"><a href="#">Home</a></li>
+            <li><a href="<%= new_user_registration_path %>">Sign up</a></li>
           </ul>
           <p class="pull-right">
             <span class="muted">Welcome Guest User!</span>
@@ -42,6 +49,12 @@
               <li><a href="#">Profile</a></li>
               <li><a href="#">Admin</a></li>
             </ul>
+            <% flash.each do |key, value| %>
+              <div class='alert-message <%= key %>' id='<%= key %>'>
+                <a class="close" href="#">×</a>  
+                <%= value %>
+              </div>
+            <% end %>
             <%= yield %>
           </div>
         </div>
