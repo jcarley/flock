@@ -22,16 +22,19 @@
   <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">Flock</a>
+          <%= link_to "Flock", root_path, :class => "brand" %>
           <ul class="nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="<%= new_user_registration_path %>">Sign up</a></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
           </ul>
-          <p class="pull-right">
-            <span class="muted">Welcome Guest User!</span>
-            <span class="muted">&nbsp;|&nbsp;</span>
-            <a href="#">Logout</a>
-          </p>
+          <% if user_signed_in? %>
+            <p class="pull-right">
+              <span class="muted">Welcome <%= current_user.email %>!</span>
+              <span class="muted">&nbsp;|&nbsp;</span>
+              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@
           <div class="span10">
             <ul class="tabs">
               <li class="active"><a href="#">MyTime</a></li>
-              <li><a href="#">Profile</a></li>
+              <li><%= link_to "Profile", edit_user_registration_path %></li>
               <li><a href="#">Admin</a></li>
             </ul>
             <% flash.each do |key, value| %>

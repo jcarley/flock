@@ -1,8 +1,12 @@
 class TimecardsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /timecards
   # GET /timecards.xml
   def index
-    @timecards = Timecard.paginate(:page => params[:page], :per_page => 15)
+    #@timecards = Timecard.paginate(:page => params[:page], :per_page => 15)
+    @timecards = current_user.timecards.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
       format.html # index.html.erb
