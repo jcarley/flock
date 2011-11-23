@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag "flick/jquery-ui-1.8.16.custom.css" %>
   <script type="text/javascript">
     $(function() {
-        $("#timecard_volunteer_date").datepicker({
+        $("#timecard_formatted_date").datepicker({
             showOn: "both",
             buttonImage: '<%= image_path "calendar.gif"  %>',
             buttonImageOnly : true
@@ -26,8 +26,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :volunteer_date %><br />
-    <%= f.text_field :volunteer_date  %>
+    <%= f.label :formatted_date %><br />
+    <%= f.text_field :formatted_date  %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br />

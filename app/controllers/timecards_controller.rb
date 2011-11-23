@@ -5,7 +5,6 @@ class TimecardsController < ApplicationController
   # GET /timecards
   # GET /timecards.xml
   def index
-    #@timecards = Timecard.paginate(:page => params[:page], :per_page => 15)
     @timecards = current_user.timecards.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
@@ -44,7 +43,7 @@ class TimecardsController < ApplicationController
   # POST /timecards
   # POST /timecards.xml
   def create
-    @timecard = Timecard.new(params[:timecard])
+    @timecard = current_user.timecards.build(params[:timecard])
 
     respond_to do |format|
       if @timecard.save

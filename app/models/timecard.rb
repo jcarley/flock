@@ -1,6 +1,16 @@
 class Timecard < ActiveRecord::Base
 
+  attr_accessible :volunteer_date, :start_time, :end_time, :formatted_date
+
   belongs_to :user
+
+  def formatted_date=(dt)
+    self.volunteer_date = DateTime.strptime(dt, "%m/%d/%Y")
+  end
+
+  def formatted_date
+    self.volunteer_date
+  end
 
 end
 
