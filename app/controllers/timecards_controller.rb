@@ -6,33 +6,18 @@ class TimecardsController < ApplicationController
   # GET /timecards.xml
   def index
     @timecards = current_user.timecards.paginate(:page => params[:page], :per_page => 15)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @timecards }
-    end
   end
 
   # GET /timecards/1
   # GET /timecards/1.xml
   def show
     @timecard = Timecard.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @timecard }
-    end
   end
 
   # GET /timecards/new
   # GET /timecards/new.xml
   def new
     @timecard = Timecard.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @timecard }
-    end
   end
 
   # GET /timecards/1/edit
@@ -45,15 +30,12 @@ class TimecardsController < ApplicationController
   def create
     @timecard = current_user.timecards.build(params[:timecard])
 
-    respond_to do |format|
-      if @timecard.save
-        format.html { redirect_to(@timecard, :notice => 'Timecard was successfully created.') }
-        format.xml  { render :xml => @timecard, :status => :created, :location => @timecard }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @timecard.errors, :status => :unprocessable_entity }
-      end
+    if @timecard.save
+      redirect_to(@timecard, :notice => 'Timecard was successfully created.') 
+    else
+      render :action => "new"
     end
+
   end
 
   # PUT /timecards/1
@@ -61,14 +43,10 @@ class TimecardsController < ApplicationController
   def update
     @timecard = Timecard.find(params[:id])
 
-    respond_to do |format|
-      if @timecard.update_attributes(params[:timecard])
-        format.html { redirect_to(@timecard, :notice => 'Timecard was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @timecard.errors, :status => :unprocessable_entity }
-      end
+    if @timecard.update_attributes(params[:timecard])
+      redirect_to(@timecard, :notice => 'Timecard was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
 
@@ -78,9 +56,7 @@ class TimecardsController < ApplicationController
     @timecard = Timecard.find(params[:id])
     @timecard.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(timecards_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(timecards_url)
   end
+
 end

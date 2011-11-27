@@ -40,6 +40,12 @@ module Flock
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.to_prepare do
+      Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "standard" }
+      Devise::SessionsController.layout "standard"
+      Devise::PasswordsController.layout "standard"
+    end
   
   end
 

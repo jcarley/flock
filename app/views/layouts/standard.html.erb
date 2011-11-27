@@ -21,34 +21,18 @@
   <div class="topbar">
       <div class="fill">
         <div class="container">
-          <%= link_to "Flock", root_path, :class => "brand" %>
+          <%= link_to "Flock", new_user_session_path, :class => "brand" %>
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
           </ul>
-          <% if user_signed_in? %>
-            <p class="pull-right">
-              <span class="muted">Welcome <%= current_user.email %>!</span>
-              <span class="muted">&nbsp;|&nbsp;</span>
-              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-            </p>
-          <% end %>
         </div>
       </div>
     </div>
 
     <div class="container">
-
       <div class="content">
-        <div class="page-header">
-          <h1><%= page_heading %></h1>
-        </div>
         <div class="row">
           <div class="span10">
-            <ul class="tabs">
-              <li<%= active_tab( "timecards" )%>><%= link_to "My Time", root_path %></li>
-              <li<%= active_tab( "registrations" ) %>><%= link_to "Profile", edit_user_registration_path %></li>
-              <li<%= active_tab( "admins" ) %>><a href="#">Admin</a></li>
-            </ul>
             <% flash.each do |key, value| %>
               <div class='alert-message <%= key %>' id='<%= key %>'>
                 <a class="close" href="#">×</a>  

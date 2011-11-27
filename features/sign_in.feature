@@ -5,8 +5,8 @@ Feature: Signing in
 
   Scenario: Signing in via form
   Given there are the following users:
-    | email             | password |
-    | user@ticketee.com | password |
+    | email             | password | admin |
+    | user@ticketee.com | password | true  |
   And I am on the homepage
   When I follow "Sign in"
   And I fill in "Email" with "user@ticketee.com"
