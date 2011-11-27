@@ -1,21 +1,28 @@
-<h2>Sign in</h2>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-stacked" }) do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  
-  <div>
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+  <fieldset>
+    <legend>Sign in</legend>
 
-  <div>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
+    <div class="clearfix">
+      <%= f.label :email %>
+      <div class="input">
+        <%= f.email_field :email %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign in", :class => "btn primary"  %>
-  </div>
+    <div class="clearfix">
+      <%= f.label :password %>
+      <div class="input">
+        <%= f.password_field :password %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign in", :class => "btn primary"  %>
+    </div>
+  </fieldset>
 
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
+

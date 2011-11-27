@@ -47,7 +47,9 @@
             <ul class="tabs">
               <li<%= active_tab( "timecards" )%>><%= link_to "My Time", root_path %></li>
               <li<%= active_tab( "registrations" ) %>><%= link_to "Profile", edit_user_registration_path %></li>
-              <li<%= active_tab( "admins" ) %>><a href="#">Admin</a></li>
+              <% if current_user.admin? %>
+                <li<%= active_tab( "admins" ) %>><a href="#">Admin</a></li>
+              <% end %>
             </ul>
             <% flash.each do |key, value| %>
               <div class='alert-message <%= key %>' id='<%= key %>'>
