@@ -9,7 +9,7 @@ class Timecard < ActiveRecord::Base
   end
 
   def formatted_date
-    self.volunteer_date
+    self.volunteer_date.to_formatted_s( :short_ordinal ) unless self.volunteer_date.nil?
   end
 
 end
