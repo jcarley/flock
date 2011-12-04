@@ -115,3 +115,45 @@ body {
 *:first-child + html .flock_pagination {
   overflow: hidden;
 }
+
+/*  Timeselect */
+
+.ui-timeselect-list-container {
+  cursor: default;
+  position: absolute;
+  height: 145px;
+  width: 150px;
+  overflow: auto;
+}
+
+.ui-timeselect-list {
+  list-style: none;
+  padding: 2px;
+  margin: 0;
+  display:block;
+  float: left;
+  z-index: 1;
+  width: 145px;
+}
+
+.ui-timeselect-list-item {
+  margin: 0;
+  padding: 0;
+  zoom: 1;
+  float: left;
+  clear: left;
+  width: 100%;
+}
+
+.ui-timeselect-list-item a {
+  text-decoration: none;
+  display: block;
+  padding: .2em .4em;
+  line-height: 1.5;
+  zoom: 1;
+}
+
+/*border: 1px solid #0073ea;*/
+/*background: #0073ea url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;*/
+/*font-weight: bold; */
+/*color: #ffffff;*/
