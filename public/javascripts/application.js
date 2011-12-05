@@ -5,10 +5,10 @@
     },
     _create: function () {
       var self = this;
-      var list = this.list = $("<ul>")
+      var list = this.list = $("<ul></ul>")
         .addClass("ui-timeselect-list");
 
-      var list_container = this.list_container = $("<div>")
+      var list_container = this.list_container = $("<div></div>")
         .addClass("ui-timeselect-list-container")
         .addClass("ui-widget ui-widget-content ui-corner-all")
         .hide()
@@ -28,6 +28,13 @@
       );
 
       this._initSource();
+      this.list.menu({
+        selected: function(c, f) {
+          //f.preventDefault();
+          self.element.val(f.item.text());
+        }
+      });
+
     },
     destroy: function() {
     },
@@ -40,22 +47,22 @@
         $.each(b, function(index, value) {
           $(self.list)
             .append(
-              $('<li>')
-                .addClass("ui-timeselect-list-item")
-                .addClass("ui-corner-all")
-                .hover(function() {
-                  $(this).toggleClass("ui-state-hover");
-                },
-                function() {
-                  $(this).toggleClass("ui-state-hover");
-                })
+              $('<li></li>')
+                //.addClass("ui-timeselect-list-item")
+                //.addClass("ui-corner-all")
+                //.hover(function() {
+                  //$(this).toggleClass("ui-state-hover");
+                //},
+                //function() {
+                  //$(this).toggleClass("ui-state-hover");
+                //})
               .append(
-                $('<a>')
-                  .click(function(a) {
-                    a.preventDefault();
-                    self.element.val($(this).text());
-                    self.hideList();
-                  })
+                $('<a></a>')
+                  //.click(function(a) {
+                    //a.preventDefault();
+                    //self.element.val($(this).text());
+                    //self.hideList();
+                  //})
                 .html(value)
               )
             );

@@ -127,13 +127,13 @@ body {
 }
 
 .ui-timeselect-list {
-  list-style: none;
-  padding: 2px;
-  margin: 0;
-  display:block;
-  float: left;
-  z-index: 1;
-  width: 145px;
+  /*list-style: none;*/
+  /*padding: 2px;*/
+  /*margin: 0;*/
+  /*display:block;*/
+  /*float: left;*/
+  /*z-index: 1;*/
+  width: 129px;
 }
 
 .ui-timeselect-list-item {
