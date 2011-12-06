@@ -6,11 +6,11 @@
     _create: function () {
       var self = this;
 
-      var list_container = this.list_container = $("<div></div>")
-        .addClass("ui-timeselect-list-container")
-        .addClass("ui-widget ui-widget-content ui-corner-all")
-        .hide()
-        .insertAfter(this.element);
+      //var list_container = this.list_container = $("<div></div>")
+        //.addClass("ui-timeselect-list-container")
+        //.addClass("ui-widget ui-widget-content ui-corner-all")
+        //.hide()
+        //.insertAfter(this.element);
       
       var list = this.list = $("<ul></ul>")
         .addClass("ui-timeselect-list")
@@ -18,9 +18,11 @@
           selected: function(c, f) {
             self.element.val(f.item.text());
           }
-        }).data("menu");
+        }).hide().data("menu");
 
-      list_container.append(list.element);
+      //list_container.append(list.element);
+
+      this.list.element.insertAfter(this.element);
 
       this.element.attr("autocomplete", "off");
       this.element.click(
@@ -30,7 +32,10 @@
       )
       .blur(
         function() {
-          setTimeout(function() { self.hideList(); }, 150);
+          setTimeout(function() {
+            if(!this.list.active)
+              self.hideList();
+          }, 150);
         }
       );
 
@@ -56,7 +61,7 @@
           case f.NUMPAD_ENTER:
             if( self.menu.active ) {
               g = true;
-              c.preventDefault();
+              c.preventjDefault();
             }
           case f.TAB:
             if (!self.menu.active) return;
@@ -87,11 +92,14 @@
       }
     },
     showList: function() {
-      this.list_container.show();
+      //this.list_container.show();
+      this.list.element.show();
     },
     hideList: function() {
-      if(this.list_container.is(":visible"))
-        this.list_container.hide();
+      //if(this.list_container.is(":visible"))
+        //this.list_container.hide();
+      if(this.list.element.is(":visible"))
+        this.list.element.hide();
     },
     _move: function(a, b) {
       if (this.list.element.is(":visible"))

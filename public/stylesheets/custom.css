@@ -133,7 +133,11 @@ body {
   /*display:block;*/
   /*float: left;*/
   /*z-index: 1;*/
+  position: absolute;
+  cursor: default;
   width: 129px;
+  height: 145px;
+  overflow: auto;
 }
 
 .ui-timeselect-list-item {
