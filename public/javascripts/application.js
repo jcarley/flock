@@ -5,15 +5,22 @@
     },
     _create: function () {
       var self = this;
-      var list = this.list = $("<ul></ul>")
-        .addClass("ui-timeselect-list");
 
       var list_container = this.list_container = $("<div></div>")
         .addClass("ui-timeselect-list-container")
         .addClass("ui-widget ui-widget-content ui-corner-all")
         .hide()
-        .append(list)
         .insertAfter(this.element);
+      
+      var list = this.list = $("<ul></ul>")
+        .addClass("ui-timeselect-list")
+        .menu({
+          selected: function(c, f) {
+            self.element.val(f.item.text());
+          }
+        }).data("menu");
+
+      list_container.append(list.element);
 
       this.element.attr("autocomplete", "off");
       this.element.click(
@@ -28,45 +35,55 @@
       );
 
       this._initSource();
-      this.list.menu({
-        selected: function(c, f) {
-          //f.preventDefault();
-          self.element.val(f.item.text());
+
+      this.element.bind("keydown", function(c) {
+        g = false;
+        var f = $.ui.keyCode;
+        switch (c.keyCode) {
+          case f.PAGE_UP:
+            break;
+          case f.PAGE_DOWN:
+            break;
+          case f.UP:
+            self._move("previous", c);
+            c.preventDefault();
+            break;
+          case f.DOWN:
+            self._move("next", c);
+            c.preventDefault();
+            break;
+          case f.ENTER:
+          case f.NUMPAD_ENTER:
+            if( self.menu.active ) {
+              g = true;
+              c.preventDefault();
+            }
+          case f.TAB:
+            if (!self.menu.active) return;
+            self.menu.select(c);
+            break;
+          case f.ESCAPE:
+            break;
         }
       });
-
     },
     destroy: function() {
     },
     _initSource: function() {
       var b;
       var self = this;
-
       if($.isArray(this.options.source)) {
         b = this.options.source;
         $.each(b, function(index, value) {
-          $(self.list)
+          $(self.list.element)
             .append(
               $('<li></li>')
-                //.addClass("ui-timeselect-list-item")
-                //.addClass("ui-corner-all")
-                //.hover(function() {
-                  //$(this).toggleClass("ui-state-hover");
-                //},
-                //function() {
-                  //$(this).toggleClass("ui-state-hover");
-                //})
-              .append(
-                $('<a></a>')
-                  //.click(function(a) {
-                    //a.preventDefault();
-                    //self.element.val($(this).text());
-                    //self.hideList();
-                  //})
-                .html(value)
-              )
+                .append(
+                  $('<a></a>').html(value)
+                )
             );
         });
+        self.list.refresh();
       }
     },
     showList: function() {
@@ -75,6 +92,17 @@
     hideList: function() {
       if(this.list_container.is(":visible"))
         this.list_container.hide();
+    },
+    _move: function(a, b) {
+      if (this.list.element.is(":visible"))
+        if (this.list.first() && /^previous/.test(a) || this.list.last() && /^next/.test(a)) {
+          this.element.val(this.term);
+          this.list.deactivate()
+        } else {
+          this.list[a](b);
+        }
+      else
+        this.search(null, b)
     }
   });
 })(jQuery);
