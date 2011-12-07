@@ -31,7 +31,7 @@ class TimecardsController < ApplicationController
     @timecard = current_user.timecards.build(params[:timecard])
 
     if @timecard.save
-      redirect_to(@timecard, :notice => 'Timecard was successfully created.') 
+      redirect_to timecards_path, :notice => 'Timecard was successfully created.' 
     else
       render :action => "new"
     end
@@ -44,7 +44,7 @@ class TimecardsController < ApplicationController
     @timecard = Timecard.find(params[:id])
 
     if @timecard.update_attributes(params[:timecard])
-      redirect_to(@timecard, :notice => 'Timecard was successfully updated.')
+      redirect_to timecards_path, :notice => 'Timecard was successfully updated.'
     else
       render :action => "edit"
     end
