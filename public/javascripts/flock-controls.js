@@ -138,32 +138,6 @@
         item: this.selectedItem
       })
     },
-    _normalize: function (a) {
-      if (a.length && a[0].label && a[0].value) return a;
-      return $.map(a, function (b) {
-        if (typeof b === "string") return {
-          label: b,
-          value: b
-        };
-        return $.extend({
-          label: b.label || b.value,
-          value: b.value || b.label
-        }, b)
-      })
-    },
-    _resizeMenu: function () {
-      var a = this.menu.element;
-      a.outerWidth(Math.max(a.width("").outerWidth(), this.element.outerWidth()))
-    },
-    _renderMenu: function (a, b) {
-      var g = this;
-      $.each(b, function (c, f) {
-        g._renderItem(a, f)
-      })
-    },
-    _renderItem: function (a, b) {
-      return $("<li></li>").data("item.timeselect", b).append($("<a></a>").text(b.label)).appendTo(a)
-    },
     _move: function (a, b) {
       if (this.menu.element.is(":visible"))
         if (this.menu.first() && /^previous/.test(a) || this.menu.last() && /^next/.test(a)) {
