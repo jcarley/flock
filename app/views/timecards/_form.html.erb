@@ -12,9 +12,9 @@
 
         var availableTimes = <%= raw availableTimes %>;
 
-        $("#timecard_start_time").timeselect({ source: availableTimes });
+        $("#timecard_start_time_string").timeselect({ source: availableTimes });
 
-        $("#timecard_end_time").timeselect({ source: availableTimes });
+        $("#timecard_end_time_string").timeselect({ source: availableTimes });
     });
 
   </script>
@@ -44,16 +44,16 @@
     </div>
 
     <div class="clearfix">
-      <%= f.label :start_time %>
+      <%= f.label :start_time_string %>
       <div class="input">
-        <%= f.text_field :start_time, { :class => "medium" } %>
+        <%= f.text_field :start_time_string, { :class => "medium" } %>
       </div>
     </div>
 
     <div class="clearfix">
-      <%= f.label :end_time %>
+      <%= f.label :end_time_string %>
       <div class="input">
-        <%= f.text_field :end_time, { :class => "medium" } %>
+        <%= f.text_field :end_time_string, { :class => "medium" } %>
       </div>
     </div>
 

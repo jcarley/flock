@@ -1,33 +1,35 @@
 class Timecard < ActiveRecord::Base
 
-  attr_accessible :volunteer_date, :start_time, :end_time, :formatted_date
+  attr_accessible :start_time_string, :end_time_string, :formatted_date
 
   belongs_to :user
 
-  def formatted_date=(dt)
-    self.volunteer_date = DateTime.strptime(dt, "%m/%d/%Y")
-  end
+  default_scope :order => 'volunteer_date'
 
   def formatted_date
     self.volunteer_date.to_formatted_s( :short_ordinal ) unless self.volunteer_date.nil?
   end
 
+  def formatted_date=(dt)
+    self.volunteer_date = DateTime.strptime(dt, "%m/%d/%Y")
+  end
+
   def start_time_string
-    start_time.strftime("%I:%M %P")
+    self.start_time.strftime("%I:%M %P") unless self.start_time.nil?
   end
 
   def start_time_string=(start_time_str)
-    self.start_time = Time.parse(start_time_str)
+    self.start_time = DateTime.strptime(start_time_str, "%I:%M %P") 
   rescue ArgumentError
     @start_time_invalid = true
   end
 
   def end_time_string
-    end_time.strftime("%I:%M %P")
+    self.end_time.strftime("%I:%M %P") unless self.end_time.nil?
   end
 
   def end_time_string=(end_time_str)
-    self.end_time = Time.parse(end_time_str)
+    self.end_time = DateTime.strptime(end_time_str, "%I:%M %P")
   rescue ArgumentError
     @end_time_invalid = true
   end
