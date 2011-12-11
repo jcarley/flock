@@ -12,6 +12,8 @@ class Timecard < ActiveRecord::Base
 
   def formatted_date=(dt)
     self.volunteer_date = DateTime.strptime(dt, "%m/%d/%Y")
+  rescue ArgumentError
+    @volunteer_date_invalid = true
   end
 
   def start_time_string
@@ -35,6 +37,7 @@ class Timecard < ActiveRecord::Base
   end
 
   def validate
+    errors.add(:volunteer_date, "is invalid") if @volunteer_date_invalid
     errors.add(:start_time, "is invalid") if @start_time_invalid
     errors.add(:end_time, "is invalid") if @end_time_invalid
   end
