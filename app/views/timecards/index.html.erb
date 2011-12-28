@@ -25,7 +25,7 @@
     <td><%= timecard.formatted_date %></td>
     <td><%= timecard.start_time_string %></td>
     <td><%= timecard.end_time_string %></td>
-    <td><%= distance_of_time_in_words(timecard.start_time, timecard.end_time) %></td>
+    <td><%= pluralize(timecard.total_time, "hour") %></td>
     <td><%= link_to 'Edit', edit_timecard_path(timecard) %></td>
     <td><%= link_to 'Delete', timecard, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

@@ -36,6 +36,11 @@ class Timecard < ActiveRecord::Base
     @end_time_invalid = true
   end
 
+  def total_time
+    total = (self.end_time.to_i - self.start_time.to_i).to_f / 3600
+    total.denominator == 1 ? total.to_i : total
+  end
+
   def validate
     errors.add(:volunteer_date, "is invalid") if @volunteer_date_invalid
     errors.add(:start_time, "is invalid") if @start_time_invalid
